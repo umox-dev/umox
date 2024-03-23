@@ -12,6 +12,7 @@ import {
 } from './types';
 import { useIsFirstRender, usePageTransition, useRouterPath } from './hooks';
 import { Context } from './context';
+import { isExternalUrl } from './utils';
 
 export * from './hooks';
 export * from './types';
@@ -31,6 +32,10 @@ export const PageTransitions = <TagName extends VanillaTagName>(
       if (pathname === href) {
         return;
       }
+      if (isExternalUrl(href)) {
+        router.push(href, options);
+        return;
+      }
       start(async () => {
         router[type](href, options);
         await controls.start('exit');
@@ -45,14 +50,12 @@ export const PageTransitions = <TagName extends VanillaTagName>(
       e.preventDefault();
       const href = a.getAttribute('href') as NextRouteImpl;
       if (href) {
-        navigate('push', { href });
+        navigate('replace', { href });
       }
     }
   };
 
-  const Motion = useMemo(() => {
-    return motion(as || 'div');
-  }, [as]);
+  const Motion = useMemo(() => motion(as || 'div'), [as]);
 
   return (
     <Context.Provider value={{ pending, navigate, controls, routerPath }}>

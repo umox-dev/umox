@@ -11,6 +11,9 @@ export default async function Navbar() {
           <li>
             <Link href="/login">About</Link>
           </li>
+          <li>
+            <Link href="https://www.google.com">Thrid Party</Link>
+          </li>
         </ul>
       </nav>
     </header>

@@ -12,7 +12,13 @@ export type TransitionContext = {
   routerPath: ReturnType<typeof useRouterPath>;
 };
 
-export type NavigateType = 'push' | 'replace';
+// `NavigateType` is defined as 'replace' only. This restriction is due to the behavior of
+// browsers when performing forward and backward navigation, which can cause page transitions
+// to behave inconsistently.
+// TODO: 'push' navigation.
+export type NavigateType = 'replace';
+// export type NavigateType = 'push' | 'replace';
+
 export type NavigateArgs = { href: NextRouteImpl; options?: NavigateOptions };
 
 export type NavigateFn = (type: NavigateType, args: NavigateArgs) => void;
