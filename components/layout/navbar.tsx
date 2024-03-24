@@ -12,7 +12,7 @@ export default async function Navbar() {
             <Link href="/login">About</Link>
           </li>
           <li>
-            <Link href="https://www.google.com">Thrid Party</Link>
+            <Link href="https://www.google.com">Third Party</Link>
           </li>
         </ul>
       </nav>

@@ -1,6 +1,6 @@
 import { NextRouteImpl } from '.';
 
 export const isExternalUrl = (href: NextRouteImpl) => {
-  const pattern = /^(http:\/\/|https:\/\/)/;
+  const pattern = /^https?:\/\//;
   return pattern.test(href);
 };
