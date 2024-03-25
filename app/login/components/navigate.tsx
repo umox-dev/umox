@@ -9,14 +9,14 @@ export default function NavigateDemo({ children }: Readonly<{ children: React.Re
   const navigate2 = () => navigate('replace', { href: 'https://www.google.com' });
 
   return (
-    <PageMotion variants={{ enter: { y: 0 }, exit: { y: '-100%' } }}>
+    <PageMotion variants={{ enter: { x: 0 }, exit: { x: '100%' } }}>
       {children}
       <div className="flex gap-4">
         <button className="text-blue-400" onClick={navigate1}>
           [Navigate With Animation]
         </button>
         <button className="text-blue-400" onClick={navigate2}>
-          [Navigate Thrid Party]
+          [Navigate Third Party]
         </button>
       </div>
     </PageMotion>
