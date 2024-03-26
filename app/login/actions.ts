@@ -1,6 +1,7 @@
 'use server';
 
 import { createClient } from '@/supabase/server';
+import { getURL } from '@/utils/helper';
 import { revalidatePath } from 'next/cache';
 
 export type ActionResponse = { code: number; message: string; data: unknown };
@@ -24,9 +25,14 @@ export async function login(formData: FormData): Promise<ActionResponse> {
 export async function signup(formData: FormData): Promise<ActionResponse> {
   const supabase = createClient();
 
+  const redirectURL = getURL('/auth/confirm');
+
   const { error, data } = await supabase.auth.signUp({
     email: formData.get('email') as string,
     password: formData.get('password') as string,
+    options: {
+      emailRedirectTo: redirectURL,
+    },
   });
 
   revalidatePath('/', 'layout');
