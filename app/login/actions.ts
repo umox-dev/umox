@@ -3,42 +3,49 @@
 import { createClient } from '@/supabase/server';
 import { revalidatePath } from 'next/cache';
 
-export async function login(formData: FormData) {
+export type ActionResponse = { code: number; message: string; data: unknown };
+
+export async function login(formData: FormData): Promise<ActionResponse> {
   const supabase = createClient();
 
-  const data = {
+  const { error } = await supabase.auth.signInWithPassword({
     email: formData.get('email') as string,
     password: formData.get('password') as string,
-  };
-
-  const { error } = await supabase.auth.signInWithPassword(data);
+  });
 
   revalidatePath('/', 'layout');
 
-  return error?.message;
+  if (error) {
+    return { code: -1, message: error?.message, data: null };
+  }
+  return { code: 0, message: '', data: null };
 }
 
-export async function signup(formData: FormData) {
+export async function signup(formData: FormData): Promise<ActionResponse> {
   const supabase = createClient();
 
-  const data = {
+  const { error, data } = await supabase.auth.signUp({
     email: formData.get('email') as string,
     password: formData.get('password') as string,
-  };
-
-  const { error } = await supabase.auth.signUp(data);
+  });
 
   revalidatePath('/', 'layout');
 
-  return error?.message;
+  if (error) {
+    return { code: -1, message: error?.message, data: null };
+  }
+  return { code: 0, message: '', data: data.user };
 }
 
-export async function signout() {
+export async function signout(): Promise<ActionResponse> {
   const supabase = createClient();
 
   const { error } = await supabase.auth.signOut();
 
   revalidatePath('/', 'layout');
 
-  return error?.message;
+  if (error) {
+    return { code: -1, message: error?.message, data: null };
+  }
+  return { code: 0, message: '', data: null };
 }
