@@ -1,18 +1,19 @@
-'use client';
+import Title from './components/title';
+import NavigateDemo from './components/navigate';
+import LoginForm from './components/form';
 
-import { PageMotion, usePageTransition } from '@/components/transitions';
-
-export default function Login() {
-  const { navigate } = usePageTransition();
-
-  const navigate1 = () => navigate('replace', { href: '/' });
-  const navigate2 = () => navigate('replace', { href: 'https://www.google.com' });
-
+export default async function LoginPage() {
   return (
-    <PageMotion variants={{ enter: { y: 0 }, exit: { y: '-100%' } }}>
-      <div>123213</div>
-      <button onClick={navigate1}>[Navigate With Animation]</button>
-      <button onClick={navigate2}>[Navigate Thrid Party]</button>
-    </PageMotion>
+    <div className="m-8 flex flex-col gap-8">
+      <Title text="LOGIN PAGE" />
+      <NavigateDemo>
+        <Title text="NAVIGATE" />
+      </NavigateDemo>
+
+      <div>
+        <Title text="LOGIN FORM" />
+        <LoginForm />
+      </div>
+    </div>
   );
 }

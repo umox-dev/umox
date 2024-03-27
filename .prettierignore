@@ -1,3 +1,4 @@
 .vercel
 .next
+.supabase/types
 pnpm-lock.yaml

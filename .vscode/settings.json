@@ -3,7 +3,7 @@
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "eslint.validate": ["html", "javascript", "typescript", "javascriptreact", "typescriptreact"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "file",
   "editor.quickSuggestions": {
