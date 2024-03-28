@@ -1,9 +1,7 @@
 import { HTMLMotionProps, Target, TargetAndTransition, useAnimationControls } from 'framer-motion';
 import { useRouterPath } from './hooks';
-import {
-  AppRouterInstance,
-  NavigateOptions,
-} from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { NextRouteImpl } from '@/types';
 
 export type TransitionContext = {
   pending: boolean;
@@ -43,5 +41,3 @@ export type PageTransitionProps<TagName extends VanillaTagName> = Omit<
   HTMLMotionProps<TagName>,
   'onClickCapture'
 > & { as?: TagName };
-
-export type NextRouteImpl = __next_route_internal_types__.RouteImpl<string>;

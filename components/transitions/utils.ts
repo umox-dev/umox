@@ -1,4 +1,4 @@
-import { NextRouteImpl } from '.';
+import { NextRouteImpl } from '@/types';
 
 export const isExternalUrl = (href: NextRouteImpl) => {
   const pattern = /^https?:\/\//;
