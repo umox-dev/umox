@@ -3,16 +3,11 @@
 import { MouseEventHandler, useCallback, useEffect, useMemo, useTransition } from 'react';
 import { AnimatePresence, motion, useAnimationControls } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
-import {
-  NavigateFn,
-  NextRouteImpl,
-  PageAnimationProps,
-  PageTransitionProps,
-  VanillaTagName,
-} from './types';
+import { NavigateFn, PageAnimationProps, PageTransitionProps, VanillaTagName } from './types';
 import { useIsFirstRender, usePageTransition, useRouterPath } from './hooks';
 import { Context } from './context';
 import { isExternalUrl } from './utils';
+import { NextRouteImpl } from '@/types';
 
 export * from './hooks';
 export * from './types';
